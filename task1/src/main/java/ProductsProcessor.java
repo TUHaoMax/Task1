@@ -12,9 +12,8 @@ public class ProductsProcessor {
     @SneakyThrows
     public void readProducts (String path){
 
-        String file = Files.readString(Path.of(path));
-        String[] datas = file.split("\"");
-        parseInput(datas);
+        String input = Files.readString(Path.of(path));
+        parseInput(input);
 
         Set<String> uniqueProducts = new HashSet<>(products);
         for ( String P: uniqueProducts ) {
@@ -22,7 +21,8 @@ public class ProductsProcessor {
             productsMap.put(P,count);
         }
     }
-   private void parseInput(String[] datas){
+    public void parseInput(String input){
+        String[] datas = input.split("\"");
         for (int i=0; i< datas.length;i++){
             if (i%2!=0){
                 products.add(datas[i]);

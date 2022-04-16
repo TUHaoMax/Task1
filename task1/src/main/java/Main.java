@@ -18,6 +18,13 @@ public class Main {
 
         productsProcessor.readProducts(path+"List of products_input.in");
         mapProcessor.readMappings(path+"Mappings_input.in");
+        /*
+        * Or can give the input directly
+        *
+        productsProcessor.parseInput("input");
+        mapProcessor.parseInput("input");
+        *
+        */
 
         outputProcessor.creatOutput(productsProcessor.getProductsMap(),mapProcessor.getMappingsMap());
 

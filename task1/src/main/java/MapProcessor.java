@@ -13,13 +13,13 @@ public class MapProcessor {
         private HashMap<String, Object> mappingsMap = new HashMap<>();
         @SneakyThrows
         public void readMappings (String path){
-            String file = Files.readString(Path.of(path));
-            parseInput(file);
+            String input = Files.readString(Path.of(path));
+            parseInput(input);
         }
         @SneakyThrows
-        private void parseInput(String datas){
+        public void parseInput(String input){
             Gson gson = new Gson();
-            mappingsMap = gson.fromJson(datas,HashMap.class);
+            mappingsMap = gson.fromJson(input,HashMap.class);
         }
 
 }
