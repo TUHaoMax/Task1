@@ -9,7 +9,6 @@ import java.util.Date;
 
 public class Main {
     static String path =  "src/main/resources/";
-
     @SneakyThrows
     public static void main(String[] args) {
 
@@ -25,9 +24,10 @@ public class Main {
         System.out.println(outputProcessor.getOutPut());
 
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatObj = DateTimeFormatter.ofPattern("MM-HH:mm");
-        String outTime = formatObj.format(dateTime);
-        File file = new File(path+"output"+outTime+".out");
+        DateTimeFormatter formatObj = DateTimeFormatter.ofPattern("MM-HH,mm");
+        String outTime = formatObj.format(dateTime)+"-output.out";
+
+        File file = new File(path+outTime);
         FileWriter Writer =new FileWriter(file);
         Writer.write(outputProcessor.getOutPut().toString());
         Writer.close();

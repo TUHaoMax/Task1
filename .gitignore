@@ -4,6 +4,8 @@
 # Compiled folder
 .idea/
 target/
+test/
+
 
 # Log file
 *.log
