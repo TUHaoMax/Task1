@@ -9,8 +9,8 @@ import java.util.HashMap;
 public class OutputProcessor  {
     private ArrayList<PurchasedItems> purchasedItemsList = new ArrayList<>();
     private ArrayList<String> outPutList= new ArrayList<>();
-
     private JsonArray jsArray = new JsonArray();
+
     public void creatOutput(HashMap<String, Integer> products,HashMap<String, Object> mappings){
         for (String key: mappings.keySet()){
             if(products.containsKey(key)){
@@ -26,6 +26,7 @@ public class OutputProcessor  {
           jsArray.add(gson.toJson(purchasedItems));
       }
     }
+
     private void toProductClass(Object obj,Integer quantity){
           Gson gson = new Gson();
           PurchasedItems purchasedItems = gson.fromJson(String.valueOf(obj), PurchasedItems.class);
