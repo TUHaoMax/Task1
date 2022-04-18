@@ -28,15 +28,16 @@ public class Main {
 
         outputProcessor.creatOutput(productsProcessor.getProductsMap(),mapProcessor.getMappingsMap());
 
-        System.out.println(outputProcessor.getOutPut());
+        System.out.println(outputProcessor.getOutPutList().toString());
+        //System.out.println(outputProcessor.getJsArray().toString());
 
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatObj = DateTimeFormatter.ofPattern("MM-HH,mm");
-        String outTime = formatObj.format(dateTime)+"-output.out";
+        DateTimeFormatter formatObj = DateTimeFormatter.ofPattern("MM_HH,mm");
+        String outTime = formatObj.format(dateTime)+"_output.out";
 
         File file = new File(path+outTime);
         FileWriter Writer =new FileWriter(file);
-        Writer.write(outputProcessor.getOutPut().toString());
+        Writer.write(outputProcessor.getOutPutList().toString());
         Writer.close();
     }
 

@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import lombok.Data;
 
 import java.util.Collections;
@@ -7,7 +8,9 @@ import java.util.HashMap;
 @Data
 public class OutputProcessor  {
     private ArrayList<PurchasedItems> purchasedItemsList = new ArrayList<>();
-    private ArrayList<String> outPut= new ArrayList<>();
+    private ArrayList<String> outPutList= new ArrayList<>();
+
+    private JsonArray jsArray = new JsonArray();
     public void creatOutput(HashMap<String, Integer> products,HashMap<String, Object> mappings){
         for (String key: mappings.keySet()){
             if(products.containsKey(key)){
@@ -19,7 +22,8 @@ public class OutputProcessor  {
 
       for (PurchasedItems purchasedItems : purchasedItemsList){
           Gson gson = new Gson();
-          outPut.add(gson.toJson(purchasedItems));
+          outPutList.add(gson.toJson(purchasedItems));
+          jsArray.add(gson.toJson(purchasedItems));
       }
     }
     private void toProductClass(Object obj,Integer quantity){
