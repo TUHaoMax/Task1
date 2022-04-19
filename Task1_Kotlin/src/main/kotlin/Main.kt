@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
     println(inputProcessor.outputJson.toString())
     //println(inputProcessor.jsArray.toString())
 
-    val format = DateTimeFormatter.ofPattern("MM_HH,mm")
+    val format = DateTimeFormatter.ofPattern("MMdd_HH,mm")
     var currentTime = LocalDateTime.now().format(format)
     val outputFile = File(path+currentTime+"_out.out")
 

@@ -4,13 +4,13 @@ import lombok.SneakyThrows;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Data
 
 public class MapProcessor {
         private HashMap<String, Object> mappingsMap = new HashMap<>();
+
         @SneakyThrows
         public void readMappings (String path){
             String input = Files.readString(Path.of(path));

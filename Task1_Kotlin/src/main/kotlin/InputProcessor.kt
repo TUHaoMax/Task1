@@ -1,9 +1,11 @@
 import com.google.gson.Gson
 import com.google.gson.JsonArray
+import java.util.Objects
 
 class InputProcessor {
     var gson = Gson()
     var mappings = mutableMapOf<String,String>()
+    var mapValues = mutableSetOf<String>()
     var productsList = mutableListOf<String>()
     var outputList = mutableListOf<PurchasedItems>()
     var outputJson = mutableListOf<String>()
@@ -21,15 +23,36 @@ class InputProcessor {
 
     fun createOutput(datas: String){
         mappings = gson.fromJson(datas,mappings::class.java)
-
-        for (key in mappings.keys ){
-            var temp = gson.fromJson(gson.toJson(mappings[key]),PurchasedItems::class.java)
-            temp.quantity=productsList.count { it.equals(key) }
+        createMapValues()
+        for (outValue in mapValues){
+            var temp = gson.fromJson(outValue,PurchasedItems::class.java)
+            var keys = getKeys(outValue)
+            var count=0
+            for (key in keys){
+                count=count+productsList.count { it.equals(key) }
+            }
+            temp.quantity=count
             outputList.add(temp)
         }
 
         outputList.sortBy { PurchasedItems -> PurchasedItems.version }
         createOutputJson()
+    }
+
+    fun getKeys(outValue: String): MutableList<String> {
+        var keys = mutableListOf<String>()
+        for (key in mappings.keys){
+            if (mappings[key].toString().equals(outValue)){
+                keys.add(key)
+            }
+        }
+        return keys
+    }
+
+    fun createMapValues(){
+        for(key in mappings.keys){
+            mapValues.add(mappings[key].toString())
+        }
     }
 
     fun createOutputJson(){

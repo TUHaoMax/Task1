@@ -32,7 +32,7 @@ public class Main {
         //System.out.println(outputProcessor.getJsArray().toString());
 
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatObj = DateTimeFormatter.ofPattern("MM_HH,mm");
+        DateTimeFormatter formatObj = DateTimeFormatter.ofPattern("MMdd_HH,mm");
         String outTime = formatObj.format(dateTime)+"_output.out";
 
         File file = new File(path+outTime);
